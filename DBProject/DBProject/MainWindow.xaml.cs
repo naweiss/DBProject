@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlProject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace DBProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private OracleEngine engine = OracleEngine.getInstance();
         public MainWindow()
         {
             InitializeComponent();
+            dataGrid.ItemsSource = engine.execSelectCommand("select * from train").DefaultView;
         }
     }
 }

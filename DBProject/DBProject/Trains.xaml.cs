@@ -11,31 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DBProject
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Trains.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Trains : Window
     {
         private OracleEngine engine = OracleEngine.getInstance();
-
-        public MainWindow()
+        public Trains()
         {
             InitializeComponent();
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            new Drivers().Show();
-        }
-
-        private void button3_Click(object sender, RoutedEventArgs e)
-        {
-            new Trains().Show();
+            dataGrid.ItemsSource = engine.execSelectCommand("select * from train").DefaultView;
         }
     }
 }

@@ -31,12 +31,12 @@ namespace DBProject
         private void button_Click(object sender, RoutedEventArgs e)
         {
             OracleParameter[] inParams = {
-                engine.createParamater("Id", OracleType.Number,idTxb.Text)
+                engine.createParamater("id", OracleType.Number,idTxb.Text)
             };
             OracleParameter outParams = engine.createParamater("ans", OracleType.Cursor,null,System.Data.ParameterDirection.Output);
             try
             {
-                var x = engine.execCommand("GetAllPassengerTravels", inParams);
+                var x = engine.execCommand("GetAllPassengerTravels", inParams, outParams);
                 //if (ok)
                 //    MessageBox.Show("Success");
                 //else

@@ -22,23 +22,28 @@ namespace DBProject
     public partial class UpdateTrain : Window
     {
         private OracleEngine engine = OracleEngine.getInstance();
+        private String oId;
 
         public UpdateTrain(object[] itemArray)
         {
             InitializeComponent();
-            idTxb.Text = itemArray[0].ToString();
+            oId = idTxb.Text = itemArray[0].ToString();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
             OracleParameter[] inParams = {
+                engine.createParamater("oldId", OracleType.Number,oId),
                 engine.createParamater("id", OracleType.Number,idTxb.Text)
             };
             try
             {
                 bool ok = (bool)engine.execStoredProcedure("updateTrain", inParams);
                 if (ok)
+                {
                     MessageBox.Show("Success");
+                    oId = idTxb.Text;
+                }
                 else
                     MessageBox.Show("Invalid Query");
             }

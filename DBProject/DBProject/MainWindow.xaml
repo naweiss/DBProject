@@ -20,9 +20,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="button" Content="Drivers" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Click="button_Click" FontFamily="Segoe Script" FontWeight="Bold" Background="#FFFF3434" Foreground="#FF231C1C" FontSize="20"/>
-            <Button x:Name="button2" Content="Travellers" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="1" Click="button2_Click" FontFamily="Segoe Script" FontWeight="Bold" Background="#FFFF3434" Foreground="#FF231C1C" FontSize="20"/>
-            <Button x:Name="button3" Content="Trains" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Click="button3_Click" Grid.Column="2" FontFamily="Segoe Script" FontWeight="Bold" Background="#FFFF3434" Foreground="#FF231C1C" FontSize="20"/>
+            <Button x:Name="button" Content="Drivers" Margin="10" Click="button_Click" FontFamily="Segoe Script" FontWeight="Bold" Background="#FFFF3434" Foreground="#FF231C1C" FontSize="20"/>
+            <Button x:Name="button2" Content="Travellers" Margin="10" Grid.Column="1" Click="button2_Click" FontFamily="Segoe Script" FontWeight="Bold" Background="#FFFF3434" Foreground="#FF231C1C" FontSize="20"/>
+            <Button x:Name="button3" Content="Trains" Margin="10" Click="button3_Click" Grid.Column="2" FontFamily="Segoe Script" FontWeight="Bold" Background="#FFFF3434" Foreground="#FF231C1C" FontSize="20"/>
         </Grid>
     </Grid>
 </Window>

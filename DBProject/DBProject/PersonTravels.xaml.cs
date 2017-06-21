@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlProject;
+using System;
 using System.Collections.Generic;
 using System.Data.OracleClient;
 using System.Linq;
@@ -30,16 +31,16 @@ namespace DBProject
         private void button_Click(object sender, RoutedEventArgs e)
         {
             OracleParameter[] inParams = {
-                engine.createParamater("id", OracleType.Number,idTxb.Text)
+                engine.createParamater("Id", OracleType.Number,idTxb.Text)
             };
-            OracleParameter outParams = engine.createParamater("type", OracleType.NVarChar, cbxTypes.Text);
+            OracleParameter outParams = engine.createParamater("ans", OracleType.Cursor,null,System.Data.ParameterDirection.Output);
             try
             {
-                bool ok = (bool)engine.execCommand("insertTraveler", inParams);
-                if (ok)
-                    MessageBox.Show("Success");
-                else
-                    MessageBox.Show("Invalid Query");
+                var x = engine.execCommand("GetAllPassengerTravels", inParams);
+                //if (ok)
+                //    MessageBox.Show("Success");
+                //else
+                //    MessageBox.Show("Invalid Query");
             }
             catch (Exception ex)
             {

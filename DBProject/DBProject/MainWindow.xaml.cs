@@ -40,5 +40,10 @@ namespace DBProject
         {
             new Travellers().Show();
         }
+
+        private void button4_Click(object sender, RoutedEventArgs e)
+        {
+            new PersonTravels().Show();
+        }
     }
 }

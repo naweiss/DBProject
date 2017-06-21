@@ -1,6 +1,8 @@
 ﻿using SqlProject;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OracleClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,11 @@ namespace DBProject
         public Trains()
         {
             InitializeComponent();
+            Refresh();
+        }
+
+        private void Refresh()
+        {
             dataGrid.ItemsSource = engine.execSelectCommand("select * from train").DefaultView;
         }
 
@@ -35,12 +42,35 @@ namespace DBProject
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dataGrid.SelectedIndex != -1)
+            {
+                OracleParameter[] inParams = {
+                    engine.createParamater("id", OracleType.Number,((DataRowView)dataGrid.SelectedItem).Row.ItemArray[0].ToString())
+                };
+                try
+                {
+                    bool ok = (bool)engine.execCommand("delete from train where trainId = &id", inParams);
+                    if (ok)
+                    {
+                        Refresh();
+                        MessageBox.Show("Success");
+                    }
+                    else
+                        MessageBox.Show("Invalid Query");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error");
+                }
+            }
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dataGrid.SelectedIndex != -1)
+            {
+                new UpdateTrain(((DataRowView)dataGrid.SelectedItem).Row.ItemArray).ShowDialog();
+            }
         }
     }
 }

@@ -82,14 +82,20 @@
     <Compile Include="AddTrain.xaml.cs">
       <DependentUpon>AddTrain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddTravellers.xaml.cs">
-      <DependentUpon>AddTravellers.xaml</DependentUpon>
+    <Compile Include="AddTraveller.xaml.cs">
+      <DependentUpon>AddTraveller.xaml</DependentUpon>
     </Compile>
     <Compile Include="Trains.xaml.cs">
       <DependentUpon>Trains.xaml</DependentUpon>
     </Compile>
     <Compile Include="Travellers.xaml.cs">
       <DependentUpon>Travellers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateTrain.xaml.cs">
+      <DependentUpon>UpdateTrain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateTraveller.xaml.cs">
+      <DependentUpon>UpdateTraveller.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdateDriver.xaml.cs">
       <DependentUpon>UpdateDriver.xaml</DependentUpon>
@@ -102,7 +108,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddTravellers.xaml">
+    <Page Include="AddTraveller.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,6 +138,14 @@
     <Page Include="Travellers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateTrain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UpdateTraveller.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UpdateDriver.xaml">
       <SubType>Designer</SubType>

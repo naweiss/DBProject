@@ -19,11 +19,11 @@ namespace DBProject
     /// <summary>
     /// Interaction logic for AddTravellers.xaml
     /// </summary>
-    public partial class AddTravellers : Window
+    public partial class AddTraveller : Window
     {
         private OracleEngine engine = OracleEngine.getInstance();
 
-        public AddTravellers()
+        public AddTraveller()
         {
             InitializeComponent();
             cbxTypes.ItemsSource = engine.execSelectCommand("select type from travelertype").DefaultView;

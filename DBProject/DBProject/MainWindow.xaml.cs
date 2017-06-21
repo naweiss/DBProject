@@ -35,5 +35,10 @@ namespace DBProject
         {
             new Trains().Show();
         }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            new Trains().Show();
+        }
     }
 }

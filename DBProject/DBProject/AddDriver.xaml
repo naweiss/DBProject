@@ -32,7 +32,7 @@
             <TextBox x:Name="nameTxb" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" Grid.Row="1" Height="17" Margin="0,7"/>
             <TextBox x:Name="salaryTxb" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" Grid.Row="2" Height="17" Margin="0,7"/>
             <Label x:Name="label3" Content="Started Working:" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="3" VerticalAlignment="Center"/>
-            <DatePicker x:Name="datePic" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
+            <DatePicker x:Name="datePic" xmlns:sys="clr-namespace:System;assembly=mscorlib" SelectedDate="{x:Static sys:DateTime.Now}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
         </Grid>
 
     </Grid>

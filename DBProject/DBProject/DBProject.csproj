@@ -79,10 +79,17 @@
     <Compile Include="AddDriver.xaml.cs">
       <DependentUpon>AddDriver.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddTrain.xaml.cs">
+      <DependentUpon>AddTrain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Trains.xaml.cs">
       <DependentUpon>Trains.xaml</DependentUpon>
     </Compile>
     <Page Include="AddDriver.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTrain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

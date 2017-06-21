@@ -26,5 +26,10 @@ namespace DBProject
             InitializeComponent();
             dataGrid.ItemsSource = engine.execSelectCommand("select * from train").DefaultView;
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            new AddTrain().ShowDialog();
+        }
     }
 }

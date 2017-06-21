@@ -1,7 +1,6 @@
 ﻿using SqlProject;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.OracleClient;
 using System.Linq;
 using System.Text;
@@ -18,13 +17,13 @@ using System.Windows.Shapes;
 namespace DBProject
 {
     /// <summary>
-    /// Interaction logic for AddDriver.xaml
+    /// Interaction logic for AddTrain.xaml
     /// </summary>
-    public partial class AddDriver : Window
+    public partial class AddTrain : Window
     {
         private OracleEngine engine = OracleEngine.getInstance();
 
-        public AddDriver()
+        public AddTrain()
         {
             InitializeComponent();
         }
@@ -32,19 +31,16 @@ namespace DBProject
         private void button_Click(object sender, RoutedEventArgs e)
         {
             OracleParameter[] inParams = {
-                engine.createParamater("id", OracleType.Number,idTxb.Text),
-                engine.createParamater("name",OracleType.NVarChar,nameTxb.Text),
-                engine.createParamater("salary",OracleType.Number,salaryTxb.Text),
-                engine.createParamater("startWorking",OracleType.NVarChar,datePic.SelectedDate.Value.ToString("dd/MM/yyyy"))
-            };
+                engine.createParamater("id", OracleType.Number,idTxb.Text)};
             try
             {
-                bool ok = (bool)engine.execStoredProcedure("insertDriver", inParams);
+                bool ok = (bool)engine.execStoredProcedure("insertTrain", inParams);
                 if (ok)
                     MessageBox.Show("Success");
                 else
                     MessageBox.Show("Invalid Query");
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error");
             }

@@ -10,7 +10,8 @@ namespace SqlProject
         private OracleDataAdapter dataAdapter1;
         private OracleConnection oracleConnection1;
 
-        private OracleEngine() {
+        private OracleEngine()
+        {
             OracleConnectionStringBuilder myCStringB = new OracleConnectionStringBuilder();
             myCStringB.UserID = "system";//put in username
             myCStringB.Password = "system";//put in password
@@ -20,7 +21,8 @@ namespace SqlProject
             dataAdapter1 = new OracleDataAdapter();
         }
 
-        public static OracleEngine getInstance() {
+        public static OracleEngine getInstance()
+        {
             if (instance == null)
                 instance = new OracleEngine();
             return instance;
@@ -28,7 +30,7 @@ namespace SqlProject
 
         internal OracleParameter createParamater(string v, OracleType number, string text, ParameterDirection input = ParameterDirection.Input)
         {
-            OracleParameter tmp = new OracleParameter(v,number);
+            OracleParameter tmp = new OracleParameter(v, number);
             tmp.Value = text;
             tmp.Direction = input;
             return tmp;
@@ -36,16 +38,25 @@ namespace SqlProject
 
         public DataTable execSelectCommand(string SQLquery)
         {
-            dataAdapter1.SelectCommand = new OracleCommand();
-            //prepare data adapter for sql query
-            dataAdapter1.SelectCommand.Connection = oracleConnection1;
-            dataAdapter1.SelectCommand.CommandText = SQLquery;
-            oracleConnection1.Open();
-            DataTable dt = new DataTable();
-            dataAdapter1.Fill(dt);
-            oracleConnection1.Close();
-            //attach source in data grid for displaying results - Data GRid View is names dgvSelect
-            return dt;
+            try
+            {
+                dataAdapter1.SelectCommand = new OracleCommand();
+                //prepare data adapter for sql query
+                dataAdapter1.SelectCommand.Connection = oracleConnection1;
+                dataAdapter1.SelectCommand.CommandText = SQLquery;
+                oracleConnection1.Open();
+                DataTable dt = new DataTable();
+                dataAdapter1.Fill(dt);
+                oracleConnection1.Close();
+                //attach source in data grid for displaying results - Data GRid View is names dgvSelect
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                if (oracleConnection1.State == ConnectionState.Open)
+                    oracleConnection1.Close();
+                return null;
+            }
         }
 
         public object execCommand(string SQLquery, OracleParameter[] InParams = null, OracleParameter OutParams = null)
@@ -70,6 +81,8 @@ namespace SqlProject
             }
             catch (Exception ex)
             {
+                if (oracleConnection1.State == ConnectionState.Open)
+                    oracleConnection1.Close();
                 return false;
             }
         }
@@ -97,6 +110,8 @@ namespace SqlProject
             }
             catch (Exception ex)
             {
+                if (oracleConnection1.State == ConnectionState.Open)
+                    oracleConnection1.Close();
                 return false;
             }
         }

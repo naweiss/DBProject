@@ -35,10 +35,5 @@ namespace DBProject
         {
             new Trains().Show();
         }
-
-        private void button_Copy_Click(object sender, RoutedEventArgs e)
-        {
-            new AddDriver().Show();
-        }
     }
 }

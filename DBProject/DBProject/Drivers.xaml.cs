@@ -26,5 +26,10 @@ namespace DBProject
             InitializeComponent();
             dataGrid.ItemsSource = engine.execSelectCommand("select * from driver").DefaultView;
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            new AddDriver().ShowDialog();
+        }
     }
 }

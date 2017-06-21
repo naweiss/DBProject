@@ -7,9 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="button" Content="Drivers" HorizontalAlignment="Left" Margin="74,31,0,0" VerticalAlignment="Top" Width="130" Height="93" Click="button_Click"/>
-        <Button x:Name="button2" Content="Travellers" HorizontalAlignment="Left" Margin="72,190,0,0" VerticalAlignment="Top" Width="130" Height="93"/>
-        <Button x:Name="button3" Content="Trains" HorizontalAlignment="Left" Margin="342,31,0,0" VerticalAlignment="Top" Width="130" Height="93" Click="button3_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/bg.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Button x:Name="button" Content="Drivers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="93" Click="button_Click" Grid.Row="1"/>
+        <Button x:Name="button2" Content="Travellers" HorizontalAlignment="Center" VerticalAlignment="Top" Width="130" Height="93" Grid.Row="1"/>
+        <Button x:Name="button3" Content="Trains" HorizontalAlignment="Right" VerticalAlignment="Top" Width="130" Height="93" Click="button3_Click" Grid.Row="1"/>
 
     </Grid>
 </Window>

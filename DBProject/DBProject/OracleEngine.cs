@@ -68,9 +68,9 @@ namespace SqlProject
                 Command.Connection = oracleConnection1;
                 Command.CommandText = SQLquery;
                 if (InParams != null)
-                    dataAdapter1.SelectCommand.Parameters.AddRange(InParams);
+                    Command.Parameters.AddRange(InParams);
                 if (OutParams != null)
-                    dataAdapter1.SelectCommand.Parameters.Add(OutParams);
+                    Command.Parameters.Add(OutParams);
                 oracleConnection1.Open();
                 Command.ExecuteNonQuery();
                 oracleConnection1.Close();

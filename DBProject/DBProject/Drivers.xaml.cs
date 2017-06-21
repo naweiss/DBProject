@@ -27,6 +27,11 @@ namespace DBProject
         public Drivers()
         {
             InitializeComponent();
+            Refresh();
+        }
+
+        private void Refresh()
+        {
             dataGrid.ItemsSource = engine.execSelectCommand("select * from driver natural join person").DefaultView;
         }
 
@@ -37,16 +42,19 @@ namespace DBProject
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-                if (dataGrid.SelectedIndex != -1)
-                {
-                    OracleParameter[] inParams = {
-                    engine.createParamater("id", OracleType.Number,((DataRowView)dataGrid.SelectedItem).Row.ItemArray[0].ToString()),
+            if (dataGrid.SelectedIndex != -1)
+            {
+                OracleParameter[] inParams = {
+                    engine.createParamater("id", OracleType.Number,((DataRowView)dataGrid.SelectedItem).Row.ItemArray[0].ToString())
                 };
                 try
                 {
                     bool ok = (bool)engine.execCommand("delete from driver where personId = &id", inParams);
                     if (ok)
+                    {
+                        Refresh();
                         MessageBox.Show("Success");
+                    }
                     else
                         MessageBox.Show("Invalid Query");
                 }

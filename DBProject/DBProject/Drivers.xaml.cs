@@ -38,6 +38,7 @@ namespace DBProject
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             new AddDriver().ShowDialog();
+            Refresh();
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
@@ -70,6 +71,7 @@ namespace DBProject
             if (dataGrid.SelectedIndex != -1)
             {
                 new UpdateDriver(((DataRowView)dataGrid.SelectedItem).Row.ItemArray).ShowDialog();
+                Refresh();
             }
         }
     }

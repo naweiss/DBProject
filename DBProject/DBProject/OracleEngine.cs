@@ -16,7 +16,6 @@ namespace SqlProject
             myCStringB.Password = "system";//put in password
             myCStringB.DataSource = "XE";//use this for connecting to Machon lev
             oracleConnection1 = new OracleConnection(myCStringB.ConnectionString);
-            oracleConnection1.Open();
             //initialize oracle and non oracle objects
             dataAdapter1 = new OracleDataAdapter();
         }
@@ -27,19 +26,29 @@ namespace SqlProject
             return instance;
         }
 
-        public DataTable execSelectCommand(string SQLquery){
+        internal OracleParameter createParamater(string v, OracleType number, string text, ParameterDirection input = ParameterDirection.Input)
+        {
+            OracleParameter tmp = new OracleParameter(v,number);
+            tmp.Value = text;
+            tmp.Direction = input;
+            return tmp;
+        }
+
+        public DataTable execSelectCommand(string SQLquery)
+        {
             dataAdapter1.SelectCommand = new OracleCommand();
             //prepare data adapter for sql query
             dataAdapter1.SelectCommand.Connection = oracleConnection1;
             dataAdapter1.SelectCommand.CommandText = SQLquery;
-
+            oracleConnection1.Open();
             DataTable dt = new DataTable();
             dataAdapter1.Fill(dt);
+            oracleConnection1.Close();
             //attach source in data grid for displaying results - Data GRid View is names dgvSelect
             return dt;
         }
 
-        public bool execCommand(string SQLquery)
+        public object execCommand(string SQLquery, OracleParameter[] InParams = null, OracleParameter OutParams = null)
         {
             try
             {
@@ -47,8 +56,17 @@ namespace SqlProject
                 //prepare data adapter for sql query
                 Command.Connection = oracleConnection1;
                 Command.CommandText = SQLquery;
+                if (InParams != null)
+                    dataAdapter1.SelectCommand.Parameters.AddRange(InParams);
+                if (OutParams != null)
+                    dataAdapter1.SelectCommand.Parameters.Add(OutParams);
+                oracleConnection1.Open();
                 Command.ExecuteNonQuery();
-                return true;
+                oracleConnection1.Close();
+                if (OutParams != null)
+                    return OutParams.Value;
+                else
+                    return true;
             }
             catch (Exception ex)
             {
@@ -56,7 +74,7 @@ namespace SqlProject
             }
         }
 
-        public bool execStoredProcedure(String name, OracleParameter[] paramaters)
+        public object execStoredProcedure(String name, OracleParameter[] InParams = null, OracleParameter OutParams = null)
         {
             try
             {
@@ -64,10 +82,18 @@ namespace SqlProject
                 callProcCommand.Connection = oracleConnection1;
                 // callProcCommand.CommandType =
                 callProcCommand.CommandType = CommandType.StoredProcedure;
-                callProcCommand.CommandText = "addStudent";
-                callProcCommand.Parameters.AddRange(paramaters);
+                callProcCommand.CommandText = name;
+                if (InParams != null)
+                    callProcCommand.Parameters.AddRange(InParams);
+                if (OutParams != null)
+                    callProcCommand.Parameters.Add(OutParams);
+                oracleConnection1.Open();
                 callProcCommand.ExecuteNonQuery();
-                return true;
+                oracleConnection1.Close();
+                if (OutParams != null)
+                    return OutParams.Value;
+                else
+                    return true;
             }
             catch (Exception ex)
             {

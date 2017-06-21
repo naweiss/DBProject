@@ -21,8 +21,6 @@ namespace DBProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        private OracleEngine engine = OracleEngine.getInstance();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -36,6 +34,11 @@ namespace DBProject
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             new Trains().Show();
+        }
+
+        private void button_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            new AddDriver().Show();
         }
     }
 }

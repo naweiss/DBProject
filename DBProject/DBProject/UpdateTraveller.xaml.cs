@@ -29,7 +29,7 @@ namespace DBProject
             idTxb.Text = itemArray[0].ToString();
             nameTxb.Text = itemArray[2].ToString();
             cbxTypes.ItemsSource = engine.execSelectCommand("select type from travelertype").DefaultView;
-            cbxTypes.SelectedItem = itemArray[1].ToString(); // לבדוק שעובד
+            cbxTypes.Text = itemArray[1].ToString(); // לבדוק שעובד
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

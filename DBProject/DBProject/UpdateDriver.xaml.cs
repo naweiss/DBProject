@@ -22,11 +22,12 @@ namespace DBProject
     public partial class UpdateDriver : Window
     {
         private OracleEngine engine = OracleEngine.getInstance();
+        private String oId;
 
         public UpdateDriver(object[] itemArray)
         {
             InitializeComponent();
-            idTxb.Text = itemArray[0].ToString();
+            oId= idTxb.Text = itemArray[0].ToString();
             nameTxb.Text = itemArray[3].ToString();
             salaryTxb.Text = itemArray[1].ToString();
             datePic.SelectedDate = Convert.ToDateTime(itemArray[2].ToString());
@@ -35,6 +36,7 @@ namespace DBProject
         private void button_Click(object sender, RoutedEventArgs e)
         {
             OracleParameter[] inParams = {
+                engine.createParamater("oldId", OracleType.Number,oId),
                 engine.createParamater("id", OracleType.Number,idTxb.Text),
                 engine.createParamater("name",OracleType.NVarChar,nameTxb.Text),
                 engine.createParamater("Asalary",OracleType.Number,salaryTxb.Text),
@@ -44,7 +46,10 @@ namespace DBProject
             {
                 bool ok = (bool)engine.execStoredProcedure("updateDriver", inParams);
                 if (ok)
+                {
                     MessageBox.Show("Success");
+                    oId = idTxb.Text;
+                }
                 else
                     MessageBox.Show("Invalid Query");
             }

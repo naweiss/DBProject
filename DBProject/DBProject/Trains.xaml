@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="button1" Content="Add Train" Margin="3" Click="button1_Click" Grid.Column="0"/>
-            <Button x:Name="button2" Content="Delete Train" Margin="3" Click="button2_Click" Grid.Column="1"/>
+            <Button x:Name="button2" Content="Delete Train" Margin="3,3,3,0" Click="button2_Click" Grid.Column="1" Height="26" VerticalAlignment="Top"/>
             <Button x:Name="button3" Content="Update Train" Margin="3" Click="button3_Click" Grid.Column="2"/>
         </Grid>
     </Grid>

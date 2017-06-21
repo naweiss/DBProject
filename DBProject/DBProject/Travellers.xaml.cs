@@ -37,6 +37,7 @@ namespace DBProject
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             new AddTraveller().ShowDialog();
+            Refresh();
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
@@ -48,7 +49,7 @@ namespace DBProject
                 };
                 try
                 {
-                    bool ok = (bool)engine.execCommand("delete from driver where personId = &id", inParams);
+                    bool ok = (bool)engine.execCommand("delete from traveler where personId = &id", inParams);
                     if (ok)
                     {
                         Refresh();
@@ -69,6 +70,7 @@ namespace DBProject
             if (dataGrid.SelectedIndex != -1)
             {
                 new UpdateTraveller(((DataRowView)dataGrid.SelectedItem).Row.ItemArray).ShowDialog();
+                Refresh();
             }
         }
     }

@@ -38,7 +38,7 @@ namespace DBProject
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            new Trains().Show();
+            new Travellers().Show();
         }
     }
 }

@@ -16,21 +16,21 @@ using System.Windows.Shapes;
 namespace DBProject
 {
     /// <summary>
-    /// Interaction logic for Trains.xaml
+    /// Interaction logic for Travellers.xaml
     /// </summary>
-    public partial class Trains : Window
+    public partial class Travellers : Window
     {
         private OracleEngine engine = OracleEngine.getInstance();
 
-        public Trains()
+        public Travellers()
         {
             InitializeComponent();
-            dataGrid.ItemsSource = engine.execSelectCommand("select * from train").DefaultView;
+            dataGrid.ItemsSource = engine.execSelectCommand("select * from traveler natural join person").DefaultView;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            new AddTrain().ShowDialog();
+            new AddTravellers().ShowDialog();
         }
     }
 }

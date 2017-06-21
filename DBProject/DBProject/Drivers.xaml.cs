@@ -1,6 +1,8 @@
 ﻿using SqlProject;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OracleClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,15 +23,46 @@ namespace DBProject
     public partial class Drivers : Window
     {
         private OracleEngine engine = OracleEngine.getInstance();
+
         public Drivers()
         {
             InitializeComponent();
-            dataGrid.ItemsSource = engine.execSelectCommand("select * from driver").DefaultView;
+            dataGrid.ItemsSource = engine.execSelectCommand("select * from driver natural join person").DefaultView;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             new AddDriver().ShowDialog();
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+                if (dataGrid.SelectedIndex != -1)
+                {
+                    OracleParameter[] inParams = {
+                    engine.createParamater("id", OracleType.Number,((DataRowView)dataGrid.SelectedItem).Row.ItemArray[0].ToString()),
+                };
+                try
+                {
+                    bool ok = (bool)engine.execCommand("delete from driver where personId = &id", inParams);
+                    if (ok)
+                        MessageBox.Show("Success");
+                    else
+                        MessageBox.Show("Invalid Query");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error");
+                }
+            }
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid.SelectedIndex != -1)
+            {
+                new UpdateDriver(((DataRowView)dataGrid.SelectedItem).Row.ItemArray).ShowDialog();
+            }
         }
     }
 }

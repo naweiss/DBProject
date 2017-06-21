@@ -13,7 +13,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Button x:Name="button" Content="Add Train" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Width="100" Click="button_Click"/>
-        <Label x:Name="label" Content="Driver" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Train" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Grid HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>

@@ -1,7 +1,6 @@
 ﻿using SqlProject;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.OracleClient;
 using System.Linq;
 using System.Text;
@@ -18,27 +17,25 @@ using System.Windows.Shapes;
 namespace DBProject
 {
     /// <summary>
-    /// Interaction logic for PersonTravels.xaml
+    /// Interaction logic for LineInfo.xaml
     /// </summary>
-    public partial class PersonTravels : Window
+    public partial class LineInfo : Window
     {
         private OracleEngine engine = OracleEngine.getInstance();
-
-        public PersonTravels()
+        public LineInfo()
         {
             InitializeComponent();
+            cbxTypes.ItemsSource = engine.execSelectCommand("select Linenumber from line").DefaultView;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
             OracleParameter[] inParams = {
-                engine.createParamater("Id", OracleType.Number,idTxb.Text)
+                engine.createParamater("tmp", OracleType.Number,cbxTypes.Text)
             };
-            OracleParameter outParams = engine.createParamater("o_cursor", OracleType.Cursor,null,System.Data.ParameterDirection.ReturnValue);
             try
             {
-                DataTable dataTable = (DataTable)engine.execStoredProcedure("GetAllPassengerTravels", inParams, outParams);
-                dataGrid.ItemsSource = dataTable.DefaultView;
+                dataGrid.ItemsSource = engine.execSelectCommand("select Linenumber, count(*) as travelers,count(distinct trainid) as trains from travel natural join partitialtravel join ride using (travelId) where Linenumber = &tmp group by Linenumber order by travelers DESC", inParams).DefaultView;
             }
             catch (Exception ex)
             {

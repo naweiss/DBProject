@@ -36,7 +36,7 @@ namespace SqlProject
             return tmp;
         }
 
-        public DataTable execSelectCommand(string SQLquery)
+        public DataTable execSelectCommand(string SQLquery, OracleParameter[] InParams = null)
         {
             try
             {
@@ -44,6 +44,8 @@ namespace SqlProject
                 //prepare data adapter for sql query
                 dataAdapter1.SelectCommand.Connection = oracleConnection1;
                 dataAdapter1.SelectCommand.CommandText = SQLquery;
+                if (InParams != null)
+                    dataAdapter1.SelectCommand.Parameters.AddRange(InParams);
                 oracleConnection1.Open();
                 DataTable dt = new DataTable();
                 dataAdapter1.Fill(dt);
@@ -95,7 +97,7 @@ namespace SqlProject
                 callProcCommand.Connection = oracleConnection1;
                 // callProcCommand.CommandType =
                 callProcCommand.CommandType = CommandType.StoredProcedure;
-                callProcCommand.CommandText = name;
+                callProcCommand.CommandText = name; 
                 if (InParams != null)
                     callProcCommand.Parameters.AddRange(InParams);
                 if (OutParams != null)
@@ -104,7 +106,19 @@ namespace SqlProject
                 callProcCommand.ExecuteNonQuery();
                 oracleConnection1.Close();
                 if (OutParams != null)
-                    return OutParams.Value;
+                {
+                    if (OutParams.OracleType == OracleType.Cursor)
+                    {
+                        DataTable dt = new DataTable();
+                        OracleDataAdapter adapter = new OracleDataAdapter(callProcCommand);
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                    else
+                    {
+                        return OutParams.Value;
+                    }
+                }
                 else
                     return true;
             }

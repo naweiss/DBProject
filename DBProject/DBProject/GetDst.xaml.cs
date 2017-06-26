@@ -18,27 +18,25 @@ using System.Windows.Shapes;
 namespace DBProject
 {
     /// <summary>
-    /// Interaction logic for PersonTravels.xaml
+    /// Interaction logic for GetDst.xaml
     /// </summary>
-    public partial class PersonTravels : Window
+    public partial class GetDst : Window
     {
         private OracleEngine engine = OracleEngine.getInstance();
-
-        public PersonTravels()
+        public GetDst()
         {
             InitializeComponent();
+            cbxTypes.ItemsSource = engine.execSelectCommand("select Linenumber from line").DefaultView;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
             OracleParameter[] inParams = {
-                engine.createParamater("Id", OracleType.Number,idTxb.Text)
+                engine.createParamater("tmp", OracleType.Number,cbxTypes.Text)
             };
-            OracleParameter outParams = engine.createParamater("o_cursor", OracleType.Cursor,null,System.Data.ParameterDirection.ReturnValue);
             try
             {
-                DataTable dataTable = (DataTable)engine.execStoredProcedure("GetAllPassengerTravels", inParams, outParams);
-                dataGrid.ItemsSource = dataTable.DefaultView;
+                dataGrid.ItemsSource = engine.execSelectCommand("select * from(select linenumber, StationName as Source from Line natural join Station ) join (select s.stationname as Destination,l.linenumber from Line l, Station s where l.stationid1 = s.stationid) using(lineNumber) where lineNumber=&tmp", inParams).DefaultView;
             }
             catch (Exception ex)
             {

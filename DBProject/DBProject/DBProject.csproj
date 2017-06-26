@@ -85,6 +85,15 @@
     <Compile Include="AddTraveller.xaml.cs">
       <DependentUpon>AddTraveller.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GetDst.xaml.cs">
+      <DependentUpon>GetDst.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GetUsers.xaml.cs">
+      <DependentUpon>GetUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LineInfo.xaml.cs">
+      <DependentUpon>LineInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PersonTravels.xaml.cs">
       <DependentUpon>PersonTravels.xaml</DependentUpon>
     </Compile>
@@ -116,6 +125,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Drivers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GetDst.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GetUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LineInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

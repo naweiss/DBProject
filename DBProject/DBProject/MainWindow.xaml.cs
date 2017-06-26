@@ -1,6 +1,7 @@
 ﻿using SqlProject;
 using System;
 using System.Collections.Generic;
+using System.Data.OracleClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace DBProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private OracleEngine engine = OracleEngine.getInstance();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,6 +47,34 @@ namespace DBProject
         private void button4_Click(object sender, RoutedEventArgs e)
         {
             new PersonTravels().Show();
+        }
+
+        private void button6_Click(object sender, RoutedEventArgs e)
+        {
+            new GetDst().ShowDialog();
+        }
+
+        private void button7_Click(object sender, RoutedEventArgs e)
+        {
+            new LineInfo().ShowDialog();
+        }
+
+        private void button7_Click_1(object sender, RoutedEventArgs e)
+        {
+            new GetUsers().ShowDialog();
+        }
+
+        private void button5_Click(object sender, RoutedEventArgs e)
+        {
+            OracleParameter outParam = engine.createParamater("Result", OracleType.Number, null, System.Data.ParameterDirection.ReturnValue);
+            try
+            {
+                MessageBox.Show(engine.execStoredProcedure("TheMostProfitableLine", null, outParam).ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }

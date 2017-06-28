@@ -38,8 +38,8 @@ namespace DBProject
             OracleParameter[] inParams = {
                 engine.createParamater("oldId", OracleType.Number,oId),
                 engine.createParamater("id", OracleType.Number,idTxb.Text),
-                engine.createParamater("name",OracleType.NVarChar,nameTxb.Text),
-                engine.createParamater("type",OracleType.NVarChar,cbxTypes.Text)
+                engine.createParamater("Aname",OracleType.NVarChar,nameTxb.Text),
+                engine.createParamater("Atype",OracleType.NVarChar,cbxTypes.Text)
             };
             try
             {

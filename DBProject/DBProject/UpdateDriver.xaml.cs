@@ -38,7 +38,7 @@ namespace DBProject
             OracleParameter[] inParams = {
                 engine.createParamater("oldId", OracleType.Number,oId),
                 engine.createParamater("id", OracleType.Number,idTxb.Text),
-                engine.createParamater("name",OracleType.NVarChar,nameTxb.Text),
+                engine.createParamater("Aname",OracleType.NVarChar,nameTxb.Text),
                 engine.createParamater("Asalary",OracleType.Number,salaryTxb.Text),
                 engine.createParamater("AstartWorking",OracleType.NVarChar,datePic.SelectedDate.Value.ToString("dd/MM/yyyy"))
             };

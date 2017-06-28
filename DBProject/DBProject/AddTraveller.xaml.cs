@@ -34,12 +34,12 @@ namespace DBProject
         {
             OracleParameter[] inParams = {
                 engine.createParamater("id", OracleType.Number,idTxb.Text),
-                engine.createParamater("name",OracleType.NVarChar,nameTxb.Text),
-                engine.createParamater("type",OracleType.NVarChar,cbxTypes.Text)
+                engine.createParamater("Aname",OracleType.NVarChar,nameTxb.Text),
+                engine.createParamater("Atype",OracleType.NVarChar,cbxTypes.Text)
             };
             try
             {
-                bool ok = (bool)engine.execCommand("insertTraveler", inParams);
+                bool ok = (bool)engine.execStoredProcedure("insertTraveler", inParams);
                 if (ok)
                     MessageBox.Show("Success");
                 else

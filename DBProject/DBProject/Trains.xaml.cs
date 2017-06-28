@@ -37,8 +37,21 @@ namespace DBProject
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            new AddTrain().ShowDialog();
-            Refresh();
+            OracleParameter[] inParams = {
+                engine.createParamater("id", OracleType.Number,"1111")};
+            try
+            {
+                bool ok = (bool)engine.execStoredProcedure("insertTrain", inParams);
+                if (ok)
+                    MessageBox.Show("Success");
+                else
+                    MessageBox.Show("Invalid Query");
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)

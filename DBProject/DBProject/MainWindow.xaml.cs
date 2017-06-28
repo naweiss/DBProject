@@ -1,19 +1,7 @@
 ﻿using SqlProject;
 using System;
-using System.Collections.Generic;
 using System.Data.OracleClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DBProject
 {
@@ -69,7 +57,7 @@ namespace DBProject
             OracleParameter outParam = engine.createParamater("Result", OracleType.Number, null, System.Data.ParameterDirection.ReturnValue);
             try
             {
-                MessageBox.Show(engine.execStoredProcedure("TheMostProfitableLine", null, outParam).ToString());
+                MessageBox.Show("The most profitable line is " + engine.execStoredProcedure("TheMostProfitableLine", null, outParam).ToString()+".");
             }
             catch (Exception ex)
             {

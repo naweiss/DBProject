@@ -48,6 +48,7 @@ namespace DBProject
                 {
                     MessageBox.Show("Success");
                     oId = idTxb.Text;
+                    Close();
                 }
                 else
                     MessageBox.Show("Invalid Query");
